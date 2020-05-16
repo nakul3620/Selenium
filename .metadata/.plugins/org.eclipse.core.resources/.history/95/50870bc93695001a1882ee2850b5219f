@@ -1,0 +1,42 @@
+package selenium;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+
+public class NSP {
+WebDriver driver;
+	
+	// Lanching the firefox browser
+public void LaunchBrowser() {
+	System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+	driver = new FirefoxDriver();
+	driver.get("https://nsp.gov.in/NSPADMIN/loginPage.action");
+	
+	}
+
+// Perform actions on HTML elements, entering text and submitting the form
+public void enterinput() {
+	Select acacdemiYear1 = new Select(year_dropdown);
+	WebElement year_dropdown= driver.findElement(By.name("academicYear1"));
+	driver.findElement(By.name("loginid1")).sendKeys("nichq");
+//	driver.findElement(By.name("next")).click();
+	driver.findElement(By.id("password")).sendKeys("98765");
+	driver.findElement(By.name("login")).submit();
+	System.out.println("Login succusfully done");
+	
+}
+
+public static void main(String[] args) throws InterruptedException {
+	Newechallan obj = new Newechallan();
+	obj.LaunchBrowser();
+	obj.enterinput();
+	
+	
+	}
+
+	
+
+}

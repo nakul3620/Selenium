@@ -1,0 +1,49 @@
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByLinkText;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class Myfirstclass {
+	
+	public static void main(String[] args) throws InterruptedException
+	{
+		System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://164.100.161.91/");
+	/*	//WebDriverWait wait = new WebDriverWait(driver);
+		//WebDriverWait wait=new WebDriverWait(driver, (10));
+		driver.findElement(By.name("userName")).sendKeys("delhistate@nic.in");
+		driver.findElement(By.name("next")).click();;
+		driver.findElement(By.id("password")).sendKeys("98765");
+		driver.findElement(By.name("login")).submit();;
+		Thread.sleep(10000);
+		System.out.println("succussfully login");
+		driver.findElement(By.xpath("//img[@src='http://164.100.161.91/www/img/user1.png']")).click();
+		driver.findElement(By.xpath("//a[@href='http://164.100.161.91/index/logout']")).click();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//a[@href='http://164.100.161.91/index/update-mobile']")).click();
+		driver.navigate().back();
+		Thread.sleep(10000);
+	    * */
+		String url = driver.getCurrentUrl();
+		String newurl = url+"/echallan";
+		driver.get(newurl);
+		//driver.get("http://164.100.161.91/echallan");
+		driver.findElement(By.name("userName")).sendKeys("delhistate@nic.in");
+		driver.findElement(By.name("next")).click();
+		driver.findElement(By.id("password")).sendKeys("98765");
+		driver.findElement(By.name("login")).submit();
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//img[@src='http://164.100.161.91/echallan/www/img/user1.png']")).click();
+		driver.findElement(By.xpath("//a[@href='http://164.100.161.91/echallan/index/logout']")).click();
+		Thread.sleep(10000);
+	
+		driver.findElement(By.xpath("//a[@href='http://164.100.161.91/echallan/index/accused-challan']")).click();
+		driver.navigate().back();
+		
+	}
+	
+
+}

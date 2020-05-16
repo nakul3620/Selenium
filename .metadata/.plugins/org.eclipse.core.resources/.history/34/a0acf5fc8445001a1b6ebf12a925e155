@@ -1,0 +1,38 @@
+package selenium;
+
+import javax.xml.datatype.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByClassName;
+import org.openqa.selenium.By.ByCssSelector;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class Myfirstclass {
+	
+	public static void main(String[] args)
+	{
+		//System.out.println("hellow world");
+		System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		//driver.get("http://164.100.161.91/");
+		//WebDriverWait wait = new WebDriverWait(driver);
+		//WebDriverWait wait=new WebDriverWait(driver, (10));
+		driver.get("http://164.100.161.91/echallan");
+		//driver.findElement("Get Challan Details");
+	//	WebElement link = driver.findElement(By.linkText("Get Challan Details"));
+		//link.click();
+		//driver.navigate().back();
+		WebElement usernameElement = driver.findElement(By.id("username");
+		usernameElement.sendKeys("delhistate@nic.in");
+		//WebElement next = driver.findElement(By.tagName("NEXT"));
+		//next.click();
+		
+		//usernameElement.sendKeys("delhistate@nic.in");
+		
+		
+	}
+	
+
+}

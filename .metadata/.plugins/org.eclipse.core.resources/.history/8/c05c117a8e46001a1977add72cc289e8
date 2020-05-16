@@ -1,0 +1,43 @@
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByLinkText;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class Myfirstclass {
+	
+	public static void main(String[] args) throws InterruptedException
+	{
+		//System.out.println("hellow world");
+		System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		//driver.get("http://164.100.161.91/");
+		//WebDriverWait wait = new WebDriverWait(driver);
+		//WebDriverWait wait=new WebDriverWait(driver, (10));
+		driver.get("http://164.100.161.91/echallan");
+		//driver.findElement("Get Challan Details");
+	//	WebElement link = driver.findElement(By.linkText("Get Challan Details"));
+		//link.click();
+		//driver.navigate().back();
+		WebElement usernameElement = driver.findElement(By.name("userName"));
+		usernameElement.sendKeys("delhistate@nic.in");
+		WebElement next = driver.findElement(By.name("next"));
+		next.click();
+		WebElement passwordElement = driver.findElement(By.id("password"));
+		passwordElement.sendKeys("98765");
+		WebElement login = driver.findElement(By.name("login"));
+		login.submit();
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//img[@src='http://164.100.161.91/echallan/www/img/user1.png']")).click();
+		//driver.findElement(By.xpath("/html/body/header/div/div[2]/ul[2]/li/ul/li[6]/a")).submit();
+		//driver.findElement(By.cssSelector(".dropdown-toggle > div:nth-child(1) > img:nth-child(1)")).click();
+		//driver.findElement(By.cssSelector("li.ng-scope:nth-child(6) > a:nth-child(1)")).click();
+		//driver.findElement(By.partialLinkText("Logout")).click();
+		//driver.findElement(By.xpath("//*[@id=\"header\"]/div/div[2]/ul[2]/li/ul/li[6]/a")).click();	
+		
+	}
+	
+
+}

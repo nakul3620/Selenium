@@ -1,0 +1,19 @@
+package selenium;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Myfirstclass {
+	
+	public static void main(String[] args)
+	{
+		//System.out.println("hellow world");
+		System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://164.100.161.91/");
+		driver.get("http://164.100.161.91/echallan");
+		
+	}
+	
+
+}

@@ -1,0 +1,38 @@
+package selenium;
+
+import java.util.NoSuchElementException;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Echallanalias {
+	
+	public static void main(String[] args) throws InterruptedException
+{
+	
+	System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+	WebDriver driver = new FirefoxDriver();
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+	driver.get("http://164.100.161.91/echallan");
+	driver.findElement(By.name("userName")).sendKeys("delhistate@nic.in");
+	driver.findElement(By.name("next")).click();
+	driver.findElement(By.id("password")).sendKeys("98765");
+	driver.findElement(By.name("login")).submit();
+	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@src='http://164.100.161.91/echallan/www/img/user1.png']"))).click();
+	//driver.findElement(By.xpath("//img[@src='http://164.100.161.91/echallan/www/img/user1.png']")).click();
+	driver.findElement(By.xpath("//a[@href='http://164.100.161.91/echallan/index/logout']")).click();
+//	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@href='http://164.100.161.91/echallan/index/accused-challan']"))).click();
+	driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+	driver.findElement(By.xpath("//a[@href='http://164.100.161.91/echallan/index/accused-challan']")).click();
+	//driver.navigate().back();
+	
+	}
+	
+
+	
+	
+}

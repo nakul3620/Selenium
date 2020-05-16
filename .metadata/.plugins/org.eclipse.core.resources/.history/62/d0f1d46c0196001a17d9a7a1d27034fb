@@ -1,0 +1,72 @@
+package selenium;
+import java.io.File;
+import java.io.IOException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.Select;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+
+
+public class NSP {
+WebDriver driver;
+	
+	// Lanching the firefox browser
+public void LaunchBrowser() {
+	
+//	FirefoxOptions opt=new FirefoxOptions();
+//	opt.addArguments("--disable-notifications");
+	
+	
+	System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+	driver = new FirefoxDriver();
+	driver.get("https://nsp.gov.in/NSPADMIN/loginPage.action");
+	
+	}
+
+// Perform actions on HTML elements, entering text and submitting the form
+public void enterinput() throws IOException, TesseractException, InterruptedException {
+	WebElement year_dropdown= driver.findElement(By.name("academicYear1"));
+	Select academicyear = new Select(year_dropdown);
+	academicyear.selectByVisibleText("----------ACADEMIC YEAR: 2019-20---------");
+    driver.findElement(By.name("loginid1")).sendKeys("nichq");
+	driver.findElement(By.id("pass1")).sendKeys("NicShashi@321");
+//	Thread.sleep(5000);
+	
+	File src = driver.findElement(By.id("imgCaptcha")).getScreenshotAs(OutputType.FILE);
+	FileHandler.copy(src, new File("./screenshot/Captacha.png")); 
+	
+/*	ITesseract image=new Tesseract();
+	String imageText=image.doOCR(new File("./screenshot/Captacha.png"));
+	System.out.print(imageText);
+	*/
+//	driver.findElement(By.name("login")).submit();
+//	System.out.println("Login succusfully done");
+
+}
+
+
+public static void main(String[] args) throws InterruptedException, IOException, TesseractException {
+	NSP obj = new NSP();
+	obj.LaunchBrowser();
+	obj.enterinput();
+	File imageFile = new File("./screenshot/Captacha.png");
+	  Tesseract instance = Tesseract.getInstance(); 
+	  try {
+	   String result = instance.doOCR(imageFile);
+	   System.out.println(result);
+	  } catch (TesseractException e) {
+	   System.err.println(e.getMessage());
+	
+	
+	
+	}
+
+	
+
+}

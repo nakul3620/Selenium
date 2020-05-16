@@ -1,0 +1,57 @@
+package selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Newechallan {
+	WebDriver driver;
+	
+	// Lanching the firefox browser
+public void LaunchBrowser() {
+	System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+	driver = new FirefoxDriver();
+	driver.get("http://164.100.161.91");
+	
+	}
+
+	// Click on the link("Get Challan Details") of website
+public void link() {
+	driver.findElement(By.xpath("//a[@href='http://164.100.161.91/index/update-mobile']")).click();
+	System.out.println("Link is open succusfully");
+	driver.navigate().back();
+}
+
+	// Perform actions on HTML elements, entering text and submitting the form
+public void enterinput() {
+	driver.findElement(By.name("userName")).sendKeys("delhistate@nic.in");
+	driver.findElement(By.name("next")).click();
+	driver.findElement(By.id("password")).sendKeys("98765");
+	driver.findElement(By.name("login")).submit();
+	System.out.println("Login succusfully done");
+	
+}
+
+	// Perform action for logout the page
+public void pagelogout() {
+	//WebDriverWait wait=new WebDriverWait(driver, 20);
+	//wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@src='http://164.100.161.91/www/img/user1.png']"))).click();
+	driver.findElement((By.xpath("//img[@src='http://164.100.161.91/www/img/user1.png']"))).click();
+	driver.findElement(By.xpath("//a[@href='http://164.100.161.91/index/logout']")).click();
+	
+	
+}
+
+public static void main(String[] args) {
+	Newechallan obj = new Newechallan();
+	obj.LaunchBrowser();
+	obj.link();
+	obj.enterinput();
+	obj.pagelogout();
+	
+	}
+
+
+}

@@ -1,0 +1,106 @@
+package selenium;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Newechallan {
+	WebDriver driver;
+	
+	// Lanching the firefox browser
+public void LaunchBrowser() {
+	System.setProperty("webdriver.gecko.driver", "/home/nakul/selenium/geckodriver");
+	driver = new FirefoxDriver();
+	driver.get("https://echallan.parivahan.gov.in/");
+	
+	}
+
+	// Click on the link("Get Challan Details") of website
+public void link() {
+	driver.findElement(By.xpath("//a[@href='https://echallan.parivahan.gov.in/index/update-mobile']")).click();
+	System.out.println("Link is open succusfully");
+	driver.navigate().back();
+}
+
+	// Perform actions on HTML elements, entering text and submitting the form
+public void enterinput() {
+	LaunchBrowser();
+	driver.findElement(By.name("userName")).sendKeys("delhistate@nic.in");
+	driver.findElement(By.name("next")).click();
+	driver.findElement(By.id("password")).sendKeys("98765");
+	driver.findElement(By.name("login")).submit();
+//	System.out.println("Login succusfully done");
+	
+}
+
+	// Perform action for logout the page
+public void pagelogout() {
+	WebDriverWait wait=new WebDriverWait(driver, 20);
+	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@src='https://echallan.parivahan.gov.in/www/img/user1.png']"))).click();
+	driver.findElement(By.xpath("//a[@href='https://echallan.parivahan.gov.in/index/logout']")).click();
+	
+	
+}
+public void verifylinks() {
+	//LaunchBrowser();
+	enterinput();
+	Thread.sleep("3000");
+	List<WebElement> links=driver.findElements(By.tagName("a"));
+	System.out.println("Total links are "+links.size());
+	for(int i=0;i<links.size();i++)
+	{
+		
+		WebElement ele= links.get(i);
+		
+		String url=ele.getAttribute("href");
+		
+		verifyLinkActive(url);
+		
+	}
+	
+}
+
+public static void verifyLinkActive(String linkUrl) {
+	// TODO Auto-generated method stub
+	{
+		try
+		{
+			URL url = new URL(linkUrl);
+	           
+	           HttpURLConnection httpURLConnect=(HttpURLConnection)url.openConnection();
+	           
+	           httpURLConnect.setConnectTimeout(3000);
+	           
+	           httpURLConnect.connect();
+	           
+	           if(httpURLConnect.getResponseCode()==200)
+	           {
+	               System.out.println(linkUrl+" - "+httpURLConnect.getResponseMessage());
+	            }
+	          if(httpURLConnect.getResponseCode()==HttpURLConnection.HTTP_NOT_FOUND)  
+	           {
+	               System.out.println(linkUrl+" - "+httpURLConnect.getResponseMessage() + " - "+ HttpURLConnection.HTTP_NOT_FOUND);
+	            }
+	        } catch (Exception e) {
+		}
+	}
+	
+}
+
+public static void main(String[] args) {
+	Newechallan obj = new Newechallan();
+	obj.verifylinks();
+//	obj.LaunchBrowser();
+//	obj.link();
+//	obj.pagelogout();
+	
+	}
+
+
+}
